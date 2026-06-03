@@ -177,10 +177,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (scrollY >= top && scrollY < top + height) {
                 navLinksAll.forEach(link => {
+                    if (link.classList.contains('nav-link--cta')) return;
+                    
                     link.classList.remove('active');
                     if (link.getAttribute('href') === '#' + id) {
+                        link.classList.add('active');
                         link.style.color = '#d4a843';
-                    } else if (!link.classList.contains('nav-link--cta')) {
+                    } else {
                         link.style.color = '';
                     }
                 });
