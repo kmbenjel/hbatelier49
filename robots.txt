@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /assets/images/cat-*
+
+Sitemap: https://hbatelier49.com/sitemap.xml
+
+# HB Atelier 49 - Menuiserie Aluminium & Métallerie
+# Berchid & Casablanca, Maroc
