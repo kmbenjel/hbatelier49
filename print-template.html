@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Cartes de Visite - HB Atelier 49 - Print Template</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================================================
+           PRINT TEMPLATE — Standard 85×55mm with 3mm Bleed on all sides (91×61mm total)
+           At 300 DPI: 1075px × 721px
+           Safe Zone: 934px × 580px (3mm inset from trim line)
+           ========================================================================= */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #111;
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 0;
+            gap: 40px;
+        }
+
+        /* Card Page Container */
+        .card-container {
+            width: 1075px;
+            height: 721px;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+            flex-shrink: 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* 3mm Bleed Boundary Indicator (visible only in preview, hidden in print) */
+        .bleed-guide {
+            position: absolute;
+            top: 35px;
+            left: 35px;
+            width: 1004px;
+            height: 650px;
+            border: 1px dashed rgba(212, 168, 67, 0.45);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Safe Zone Indicator (visible only in preview, hidden in print) */
+        .safe-guide {
+            position: absolute;
+            top: 70px;
+            left: 70px;
+            width: 935px;
+            height: 581px;
+            border: 1px dotted rgba(255, 255, 255, 0.15);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Main printable content container (offset by bleed width of 35px) */
+        .card-inner {
+            width: 1004px;
+            height: 650px;
+            position: absolute;
+            top: 35px;
+            left: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 45px 50px;
+            z-index: 10;
+        }
+
+        /* ==================== CARD 1: INDUSTRIAL / IMPORT-EXPORT ==================== */
+        .card-industrial {
+            background: linear-gradient(145deg, #1c2940 0%, #0f1b2d 40%, #0a1320 100%);
+        }
+
+        .card-industrial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212,168,67,0.06) 0%, rgba(212,168,67,0.02) 100%);
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+            z-index: 1;
+        }
+
+        /* Bottom gold strip (extends full width including bleed) */
+        .card-industrial::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #d4a843, #b8912e, #d4a843);
+            z-index: 2;
+        }
+
+        .card-industrial .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .card-industrial .card-logo {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .card-industrial .card-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.7rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            color: #f0f0f0;
+        }
+
+        .card-industrial .card-logo-accent {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.7rem;
+            font-weight: 900;
+            color: #d4a843;
+        }
+
+        .card-industrial .card-tagline {
+            font-size: 1.15rem;
+            color: #6b7d99;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-align: right;
+            max-width: 320px;
+            line-height: 1.5;
+        }
+
+        .card-industrial .card-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.1rem;
+            font-weight: 600;
+            font-style: italic;
+            color: #f0f0f0;
+            margin-bottom: 4px;
+        }
+
+        .card-industrial .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #d4a843;
+        }
+
+        .card-industrial .card-services {
+            margin-top: 14px;
+            font-size: 1.15rem;
+            color: #a0aec0;
+            letter-spacing: 0.05em;
+            line-height: 1.6;
+        }
+
+        .card-industrial .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 10px; /* offset from gold strip */
+        }
+
+        .card-industrial .card-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .card-industrial .card-contact-item {
+            font-size: 1.15rem;
+            color: #a0aec0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-industrial .card-contact-item .icon {
+            color: #d4a843;
+            font-size: 1.35rem;
+            display: inline-block;
+            width: 24px;
+            text-align: center;
+        }
+
+        .card-industrial .card-website {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #d4a843;
+            letter-spacing: 0.05em;
+        }
+
+        /* === CARD 1: BACK === */
+        .card-industrial-back {
+            background: linear-gradient(145deg, #1c2940, #0a1320);
+        }
+
+        .card-industrial-back::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 80px,
+                    rgba(212,168,67,0.03) 80px,
+                    rgba(212,168,67,0.03) 82px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 80px,
+                    rgba(212,168,67,0.03) 80px,
+                    rgba(212,168,67,0.03) 82px
+                );
+            z-index: 1;
+        }
+
+        .card-industrial-back::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #d4a843, #b8912e, #d4a843);
+            z-index: 2;
+        }
+
+        .card-industrial-back .back-inner {
+            width: 1004px;
+            height: 650px;
+            position: absolute;
+            top: 35px;
+            left: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            padding: 40px;
+        }
+
+        .card-industrial-back .back-icons {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .card-industrial-back .back-icon {
+            width: 80px;
+            height: 80px;
+            border: 1.5px solid rgba(212,168,67,0.25);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            background: rgba(10, 19, 32, 0.6);
+        }
+
+        .card-industrial-back .back-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            color: #f0f0f0;
+        }
+
+        .card-industrial-back .back-logo span {
+            color: #d4a843;
+        }
+
+        .card-industrial-back .back-sub {
+            font-size: 1.15rem;
+            color: #6b7d99;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        .card-industrial-back .back-addresses {
+            margin-top: 40px;
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+        }
+
+        .card-industrial-back .back-address {
+            font-size: 1.05rem;
+            color: #6b7d99;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 380px;
+        }
+
+        .card-industrial-back .back-address strong {
+            color: #d4a843;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 1.15rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+
+        /* ==================== CARD 2: AMÉNAGEMENT / DESIGN ==================== */
+        .card-design {
+            background: linear-gradient(160deg, #1a3040 0%, #0d2233 50%, #081a28 100%);
+        }
+
+        .card-design::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 1px solid rgba(212,168,67,0.08);
+            z-index: 1;
+        }
+
+        .card-design::after {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -120px;
+            width: 580px;
+            height: 580px;
+            border-radius: 50%;
+            border: 1px solid rgba(212,168,67,0.04);
+            z-index: 1;
+        }
+
+        .card-design .card-top {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .card-design .card-logo {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .card-design .card-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.1rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            color: #f0f0f0;
+        }
+
+        .card-design .card-logo-accent {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.1rem;
+            font-weight: 900;
+            color: #d4a843;
+        }
+
+        .card-design .card-division {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #d4a843;
+            opacity: 0.8;
+        }
+
+        .card-design .card-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.1rem;
+            font-weight: 600;
+            font-style: italic;
+            color: #f0f0f0;
+            margin-bottom: 6px;
+        }
+
+        .card-design .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #d4a843;
+            margin-bottom: 12px;
+        }
+
+        .card-design .card-services {
+            font-size: 1.15rem;
+            color: #7a9bb5;
+            letter-spacing: 0.05em;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        .card-design .card-divider {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, #d4a843, transparent);
+            margin: 16px 0;
+        }
+
+        .card-design .card-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .card-design .card-contact-item {
+            font-size: 1.15rem;
+            color: #7a9bb5;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-design .card-contact-item .icon {
+            color: #d4a843;
+            font-size: 1.3rem;
+            display: inline-block;
+            width: 24px;
+            text-align: center;
+        }
+
+        .card-design .card-website {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #d4a843;
+            letter-spacing: 0.05em;
+        }
+
+        /* === CARD 2: BACK === */
+        .card-design-back {
+            background: linear-gradient(160deg, #1a3040, #081a28);
+        }
+
+        .card-design-back::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 680px;
+            height: 680px;
+            border-radius: 50%;
+            border: 1px solid rgba(212,168,67,0.05);
+            z-index: 1;
+        }
+
+        .card-design-back::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            border: 1px solid rgba(212,168,67,0.08);
+            z-index: 1;
+        }
+
+        .card-design-back .back-inner {
+            width: 1004px;
+            height: 650px;
+            position: absolute;
+            top: 35px;
+            left: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            padding: 40px;
+        }
+
+        .card-design-back .back-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            color: #f0f0f0;
+        }
+
+        .card-design-back .back-logo span {
+            color: #d4a843;
+        }
+
+        .card-design-back .back-division {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #d4a843;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        .card-design-back .back-tagline {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: #7a9bb5;
+            margin-top: 24px;
+            letter-spacing: 0.05em;
+        }
+
+        .card-design-back .back-addresses {
+            margin-top: 40px;
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+        }
+
+        .card-design-back .back-address {
+            font-size: 1.05rem;
+            color: #5a7d95;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 380px;
+        }
+
+        .card-design-back .back-address strong {
+            color: #d4a843;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 1.15rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* JS routing helper */
+        .card-container {
+            display: none;
+        }
+        
+        body.show-all .card-container {
+            display: block;
+        }
+
+        body.show-all {
+            background: #111;
+        }
+
+        /* Screenshot Mode Overrides */
+        body.show-1f, body.show-1b, body.show-2f, body.show-2b {
+            padding: 0;
+            margin: 0;
+            background: transparent;
+            display: block;
+        }
+
+        /* Print Override */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .card-container {
+                box-shadow: none;
+                page-break-after: always;
+                position: relative;
+                top: 0;
+                left: 0;
+                margin: 0;
+                width: 91mm;
+                height: 61mm;
+            }
+            .bleed-guide, .safe-guide {
+                display: none; /* Hide guides in printing */
+            }
+            /* force display in print mode */
+            body.show-1f #card-1f { display: block; }
+            body.show-1b #card-1b { display: block; }
+            body.show-2f #card-2f { display: block; }
+            body.show-2b #card-2b { display: block; }
+            
+            /* scaling for print: translate 1075x721px to 91x61mm */
+            .card-container {
+                transform: scale(0.3199); /* 343.9px (91mm) / 1075px = 0.3199 */
+                transform-origin: top left;
+            }
+        }
+    </style>
+</head>
+<body class="show-all">
+
+    <!-- Card 1 Front -->
+    <div class="card-container card-industrial" id="card-1f">
+        <div class="bleed-guide"></div>
+        <div class="safe-guide"></div>
+        <div class="card-inner">
+            <div class="card-top">
+                <div class="card-logo">
+                    <span class="card-logo-text">ATELIER</span><span class="card-logo-accent">49</span>
+                </div>
+                <div class="card-tagline">Import – Export<br>Fabrication &<br>Distribution</div>
+            </div>
+            <div>
+                <div class="card-name">Hassan Bouslikhane</div>
+                <div class="card-title">Directeur Général</div>
+                <div class="card-services">Accessoires de fixation et éclairage public · Industrie métallique</div>
+            </div>
+            <div class="card-bottom">
+                <div class="card-contact">
+                    <div class="card-contact-item"><span class="icon">☎</span> 06 61 29 56 08</div>
+                    <div class="card-contact-item"><span class="icon">✉</span> hb.atelier49@gmail.com</div>
+                </div>
+                <div class="card-website">hbatelier49.com</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 1 Back -->
+    <div class="card-container card-industrial-back" id="card-1b">
+        <div class="bleed-guide"></div>
+        <div class="safe-guide"></div>
+        <div class="back-inner">
+            <div class="back-icons">
+                <div class="back-icon">💡</div>
+                <div class="back-icon">🔩</div>
+                <div class="back-icon">🏗️</div>
+                <div class="back-icon">🔧</div>
+            </div>
+            <div class="back-logo">ATELIER <span>49</span></div>
+            <div class="back-sub">Import — Export — Fabrication & Distribution</div>
+            <div class="back-addresses">
+                <div class="back-address">
+                    <strong>Usine</strong>
+                    ZI route El Gara<br>Berchid, Lot 4
+                </div>
+                <div class="back-address">
+                    <strong>Siège Social</strong>
+                    77 rue Mohamed Smiha<br>10ème étage, App 57<br>Casablanca
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 2 Front -->
+    <div class="card-container card-design" id="card-2f">
+        <div class="bleed-guide"></div>
+        <div class="safe-guide"></div>
+        <div class="card-inner">
+            <div class="card-top">
+                <div class="card-logo">
+                    <span class="card-logo-text">ATELIER</span><span class="card-logo-accent">49</span>
+                </div>
+                <div class="card-division">Design & Aménagement</div>
+            </div>
+            <div>
+                <div class="card-name">Hassan Bouslikhane</div>
+                <div class="card-title">Directeur Général</div>
+                <div class="card-divider"></div>
+                <div class="card-services">Aménagement · Menuiserie Aluminium · Fer & Inox · Éclairage</div>
+            </div>
+            <div class="card-bottom">
+                <div class="card-contact">
+                    <div class="card-contact-item"><span class="icon">☎</span> 06 61 29 56 08</div>
+                    <div class="card-contact-item"><span class="icon">✉</span> hb.atelier49@gmail.com</div>
+                </div>
+                <div class="card-website">hbatelier49.com</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 2 Back -->
+    <div class="card-container card-design-back" id="card-2b">
+        <div class="bleed-guide"></div>
+        <div class="safe-guide"></div>
+        <div class="back-inner">
+            <div class="back-logo">ATELIER <span>49</span></div>
+            <div class="back-division">Design & Aménagement</div>
+            <div class="back-tagline">L'art du métal, au service de votre espace</div>
+            <div class="back-addresses">
+                <div class="back-address">
+                    <strong>Usine</strong>
+                    ZI route El Gara<br>Berchid, Lot 4
+                </div>
+                <div class="back-address">
+                    <strong>Siège Social</strong>
+                    77 rue Mohamed Smiha<br>10ème étage, App 57<br>Casablanca
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple routing for headless screenshot targeting
+        const hash = window.location.hash;
+        if (hash === '#1f') {
+            document.body.className = 'show-1f';
+            document.getElementById('card-1f').style.display = 'block';
+        } else if (hash === '#1b') {
+            document.body.className = 'show-1b';
+            document.getElementById('card-1b').style.display = 'block';
+        } else if (hash === '#2f') {
+            document.body.className = 'show-2f';
+            document.getElementById('card-2f').style.display = 'block';
+        } else if (hash === '#2b') {
+            document.body.className = 'show-2b';
+            document.getElementById('card-2b').style.display = 'block';
+        } else {
+            document.body.className = 'show-all';
+        }
+    </script>
+</body>
+</html>
